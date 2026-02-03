@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talha Cyber Data Drainer</title>
+    <style>
+        body { background: #000; color: #0f0; font-family: 'Courier New', monospace; text-align: center; padding: 0; margin: 0; overflow-x: hidden; }
+        
+        /* ত্বলহা নামের বড় ব্যানার স্টাইল */
+        .name-banner {
+            background: linear-gradient(180deg, #111 0%, #000 100%);
+            padding: 50px 20px;
+            border-bottom: 2px solid #0f0;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+            margin-bottom: 30px;
+        }
+        .name-banner h1 {
+            font-size: 4em;
+            margin: 0;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 40px #0f0;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        .name-banner p {
+            color: #0f0;
+            font-size: 1.2em;
+            margin-top: 10px;
+            letter-spacing: 3px;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #0f0, 0 0 20px #0f0; }
+            to { text-shadow: 0 0 20px #0f0, 0 0 40px #0f0, 0 0 60px #0f0; }
+        }
+
+        /* Modal Style */
+        #joinModal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+        .modal-content { background: #111; padding: 30px; border: 2px solid #0f0; border-radius: 15px; box-shadow: 0 0 20px #0f0; max-width: 400px; width: 90%; }
+        .modal-content h2 { color: #fff; margin-bottom: 20px; }
+        .join-btn { display: block; margin: 10px auto; padding: 12px; text-decoration: none; font-weight: bold; border-radius: 5px; color: #000; transition: 0.3s; }
+        .tg { background: #0088cc; color: white; }
+        .fb { background: #1877f2; color: white; }
+        .close-btn { background: #0f0; color: #000; cursor: pointer; border: none; padding: 10px 20px; margin-top: 15px; font-weight: bold; }
+
+        /* Main UI */
+        .container { border: 1px solid #0f0; padding: 30px; display: inline-block; border-radius: 10px; background: #050505; margin-bottom: 50px; }
+        input { padding: 12px; border: 1px solid #0f0; background: #111; color: #fff; width: 80%; margin: 15px 0; outline: none; text-align: center; font-size: 1.1em; }
+        .start-btn { padding: 15px 35px; background: #0f0; color: #000; border: none; font-weight: bold; cursor: pointer; font-size: 1em; box-shadow: 0 0 10px #0f0; }
+        #status { margin-top: 25px; font-size: 1.3em; color: #00ffea; }
+        .progress-container { width: 80%; background: #222; margin: 20px auto; border: 1px solid #0f0; height: 20px; position: relative; }
+        #progressBar { width: 0%; height: 100%; background: #0f0; transition: 0.2s; }
+    </style>
+</head>
+<body>
+
+    <div id="joinModal">
+        <div class="modal-content">
+            <h2>স্বাগতম!</h2>
+            <p>শুরু করার আগে আমাদের কমিউনিটিতে জয়েন করুন:</p>
+            <a href="https://t.me/freemininglinkcopy" target="_blank" class="join-btn tg">Join Telegram</a>
+            <a href="https://www.facebook.com/share/1Fn238p3nf/" target="_blank" class="join-btn fb">Join Facebook</a>
+            <button class="close-btn" onclick="closeModal()">I have Joined</button>
+        </div>
+    </div>
+
+    <header class="name-banner">
+        <h1>TALHA</h1>
+        <p>CYBER SECURITY & DATA DRAINER</p>
+    </header>
+
+    <div class="container">
+        <h2 style="color: #fff;">TURBO MODE ACTIVE</h2>
+        <p>কত জিবি (GB) শেষ করতে চান?</p>
+        <input type="number" id="gbInput" placeholder="উদা: 1 বা 5" step="0.1">
+        <br>
+        <button class="start-btn" onclick="startDraining()">START DATA DRAIN</button>
+        
+        <div class="progress-container">
+            <div id="progressBar"></div>
+        </div>
+        <div id="status">Status: Waiting for Command...</div>
+        <p id="speed" style="color: #888;">Speed: 0 MB/s</p>
+    </div>
+
+    <script>
+        function closeModal() {
+            document.getElementById('joinModal').style.display = 'none';
+        }
+
+        async function startDraining() {
+            let targetGB = document.getElementById('gbInput').value;
+            if(!targetGB || targetGB <= 0) {
+                alert("দয়া করে সঠিক পরিমাণ দিন!");
+                return;
+            }
+
+            let targetBytes = targetGB * 1024 * 1024 * 1024;
+            let consumedBytes = 0;
+            let statusDiv = document.getElementById('status');
+            let progressBar = document.getElementById('progressBar');
+            let speedDiv = document.getElementById('speed');
+
+            const fileUrl = 'https://speed.hetzner.de/100MB.bin?t=';
+            statusDiv.innerHTML = "Turbo Draining Active...";
+            
+            let startTime = Date.now();
+            const workers = 8; // স্পিড আরও বাড়ানোর জন্য ৮টি থ্রেড করা হয়েছে
+            
+            async function download() {
+                while (consumedBytes < targetBytes) {
+                    try {
+                        let response = await fetch(fileUrl + Date.now(), { cache: 'no-store' });
+                        const reader = response.body.getReader();
+                        
+                        while (true) {
+                            const { done, value } = await reader.read();
+                            if (done) break;
+                            
+                            consumedBytes += value.length;
+                            let progress = ((consumedBytes / targetBytes) * 100).toFixed(2);
+                            
+                            progressBar.style.width = (progress > 100 ? 100 : progress) + "%";
+                            statusDiv.innerHTML = `Consumed: ${(consumedBytes / (1024*1024)).toFixed(2)} MB (${progress}%)`;
+                            
+                            let duration = (Date.now() - startTime) / 1000;
+                            let mbPerSec = (consumedBytes / (1024 * 1024) / duration).toFixed(2);
+                            speedDiv.innerHTML = `Speed: ${mbPerSec} MB/s`;
+
+                            if (consumedBytes >= targetBytes) {
+                                statusDiv.innerHTML = "Task Completed! ✅";
+                                return;
+                            }
+                        }
+                    } catch (e) { }
+                }
+            }
+
+            for(let i=0; i<workers; i++) {
+                download();
+            }
+        }
+    </script>
+</body>
+</html>
