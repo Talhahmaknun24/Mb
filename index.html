@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talhah - Divine Data Engine</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Outfit:wght@300;600;900&family=Hind+Siliguri:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Golden Data Protocol - Master Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Outfit:wght@300;600;800&family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-light: #fdfcf0;
-            --royal-emerald: #013220;
-            --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728);
-            --glass: rgba(255, 255, 255, 0.7);
+            --bg-pearl: #fdfcf0;
+            --royal-emerald: #003323;
+            --antique-gold: #b88a44;
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728);
+            --glass: rgba(255, 255, 255, 0.88);
+            --wa-green: #25D366;
         }
 
         body {
             margin: 0; padding: 0; 
             font-family: 'Outfit', 'Hind Siliguri', sans-serif;
-            background: var(--bg-light); color: #333; min-height: 100vh;
-            overflow-x: hidden; position: relative;
+            background-color: var(--bg-pearl);
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            color: #333; min-height: 100vh; overflow-x: hidden;
         }
 
-        /* Arabic Calligraphy Watermark */
+        /* --- ARABIC CALLIGRAPHY WATERMARK --- */
         .calligraphy-watermark {
             position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
             font-family: 'Amiri', serif; font-size: 15vw;
@@ -28,48 +32,26 @@
             white-space: nowrap; font-weight: 700;
         }
 
-        /* Modern Join Portal */
-        #authOverlay {
-            position: fixed; inset: 0; background: rgba(253, 252, 240, 0.95);
-            backdrop-filter: blur(20px); display: flex; justify-content: center; align-items: center; z-index: 9999;
-        }
-
-        .auth-card {
-            width: 90%; max-width: 450px; padding: 50px; text-align: center;
-            border-radius: 40px; background: #fff;
-            border: 2px solid #bf953f; box-shadow: 0 30px 60px rgba(191, 149, 63, 0.2);
-        }
-
-        .social-btn {
-            display: block; width: 100%; padding: 18px; margin: 15px 0;
-            border-radius: 15px; text-decoration: none; font-weight: 800;
-            color: #fff; transition: 0.4s;
-        }
-
-        /* Interface Panels */
+        /* --- LUXURY INTERFACE PANELS --- */
         .glass-panel {
-            background: var(--glass); backdrop-filter: blur(15px);
-            border: 1px solid rgba(191, 149, 63, 0.3); border-radius: 30px;
-            padding: 30px; margin: 20px auto; max-width: 600px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            background: var(--glass); backdrop-filter: blur(20px);
+            border: 2px solid rgba(191, 149, 63, 0.4); border-radius: 35px;
+            padding: 35px; margin: 25px auto; max-width: 650px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.05); position: relative;
         }
 
-        header h1 {
-            font-family: 'Amiri', serif; font-size: 4.5em; margin: 0;
-            color: var(--royal-emerald); text-shadow: 2px 2px 4px rgba(191, 149, 63, 0.3);
+        .tool-title {
+            font-family: 'Amiri', serif; font-size: 2.8em; color: var(--royal-emerald);
+            text-align: center; margin-top: 50px; text-transform: uppercase;
         }
 
-        /* Light Terminal */
-        .light-terminal {
-            background: #fff; color: #555; border: 1px dashed #bf953f;
-            border-radius: 20px; padding: 20px; font-family: monospace;
-            font-size: 0.85em; height: 120px; overflow-y: auto; text-align: left;
-            margin-top: 25px;
+        /* --- BUTTONS --- */
+        .social-btn {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            width: 100%; padding: 16px; margin: 12px 0; border-radius: 15px;
+            text-decoration: none; color: #fff; font-weight: 800; transition: 0.3s;
         }
-
-        .input-row { display: flex; gap: 15px; margin-bottom: 25px; }
-        input { flex: 2; padding: 18px; border-radius: 15px; border: 1px solid #ddd; font-size: 1.1em; }
-        select { flex: 1; padding: 15px; border-radius: 15px; border: 1px solid #bf953f; }
+        .btn-wa { background: var(--wa-green); border: 1px solid #fff; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
 
         .btn-launch {
             width: 100%; padding: 22px; border-radius: 20px; border: none;
@@ -77,9 +59,21 @@
             font-size: 1.3em; font-weight: 900; color: #fff; cursor: pointer; transition: 0.3s;
         }
 
+        /* --- PORTFOLIO BADGES WITH ICONS --- */
         .badge {
-            background: #bf953f; color: #fff; padding: 6px 15px;
-            border-radius: 50px; font-size: 0.75em; font-weight: bold; margin: 5px; display: inline-block;
+            background: rgba(191, 149, 63, 0.1); color: var(--royal-emerald); 
+            padding: 8px 18px; border-radius: 50px; font-size: 0.85em; font-weight: bold; 
+            margin: 6px; display: inline-flex; align-items: center; gap: 8px;
+            border: 1.5px solid var(--antique-gold); transition: 0.3s;
+        }
+        .badge i { color: var(--antique-gold); font-size: 1.1em; }
+        .badge:hover { background: var(--antique-gold); color: #fff; }
+        .badge:hover i { color: #fff; }
+
+        .terminal-light {
+            background: #fff; border: 1px dashed var(--antique-gold);
+            padding: 15px; font-family: monospace; height: 100px; 
+            overflow-y: auto; font-size: 0.85em; border-radius: 15px;
         }
     </style>
 </head>
@@ -87,78 +81,91 @@
 
     <div class="calligraphy-watermark">بسم الله الرحمن الرحيم</div>
 
-    <div id="authOverlay">
-        <div class="auth-card">
-            <h2 style="font-family:'Amiri', serif; font-size: 3em; margin:0; color:var(--royal-emerald);">বিসমিল্লাহ</h2>
-            <p style="color:#666; margin-bottom:30px;">টুলটি ব্যবহারের আগে আমাদের সাথে যুক্ত হোন <br> (Join our community to activate tool)</p>
+    <div id="authOverlay" style="position:fixed; inset:0; background:rgba(253,252,240,0.96); display:flex; justify-content:center; align-items:center; z-index:9999;">
+        <div class="glass-panel" style="max-width:400px; text-align:center;">
+            <div style="font-family:'Amiri', serif; color:var(--antique-gold); font-size: 1.5em; margin-bottom: 10px;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+            <h2 style="font-family:'Hind Siliguri'; font-size: 2.2em; margin:0; color:var(--royal-emerald);">স্বাগতম (Welcome)</h2>
+            <p style="color:#666; font-weight: 600;">ইঞ্জিন সক্রিয় করতে আমাদের সাথে যুক্ত হোন</p>
             
-            <a href="https://t.me/freemininglinkcopy" target="_blank" class="social-btn" style="background: #0088cc;">Telegram Channel (টেলিগ্রাম)</a>
-            <a href="https://www.facebook.com/share/1Fn238p3nf/" target="_blank" class="social-btn" style="background: #1877f2;">Facebook Page (ফেসবুক)</a>
+            <a href="https://t.me/freemininglinkcopy" target="_blank" class="social-btn" style="background:#0088cc;">
+                <i class="fab fa-telegram"></i> Telegram Channel
+            </a>
+            <a href="https://www.facebook.com/share/1Fn238p3nf/" target="_blank" class="social-btn" style="background:#1877f2;">
+                <i class="fab fa-facebook"></i> Facebook Page
+            </a>
+            <a href="https://wa.me/8801933988628" target="_blank" class="social-btn btn-wa">
+                <i class="fab fa-whatsapp"></i> WhatsApp Me
+            </a>
             
-            <button onclick="document.getElementById('authOverlay').style.display='none'" style="margin-top:25px; background:none; border:2px solid #bf953f; color:#bf953f; padding:12px 30px; border-radius:30px; cursor:pointer; font-weight:800; font-family:'Hind Siliguri';">
-                আমি জয়েন করেছি (I HAVE JOINED) ✅
+            <button onclick="document.getElementById('authOverlay').style.display='none'" style="margin-top:20px; background:none; border:2px solid var(--antique-gold); color:var(--antique-gold); padding:12px 40px; border-radius:35px; cursor:pointer; font-weight:800;">
+                I HAVE JOINED ✅
             </button>
         </div>
     </div>
 
     <header style="text-align: center; padding-top: 50px;">
-        <p style="color: #bf953f; letter-spacing: 5px; margin: 0; font-weight: 600;">PORTFOLIO & TOOLS (পোর্টফোলিও)</p>
-        <h1>TALHAH (ত্বলহা)</h1>
-        <div style="font-weight: 600; color: #666; font-size: 0.9em;">
-            GRAPHIC DESIGNER | PYTHON DEVELOPER | CYBER ANALYST <br>
-            (গ্রাফিক্স ডিজাইনার | পাইথন ডেভেলপার)
-        </div>
+        <h1 class="tool-title">THE GOLDEN DATA PROTOCOL</h1>
+        <div style="font-weight: 800; color: #bf953f; letter-spacing: 4px; font-size: 0.9em;">ULTRA LUXURY EDITION v16</div>
     </header>
 
     <div class="glass-panel" style="display: flex; justify-content: space-around; text-align: center;">
         <div>
-            <small style="color:#bf953f; font-weight: 700;">LIFETIME USAGE (মোট ব্যবহার)</small>
-            <div id="life" style="font-size: 1.5em; font-weight: 900;">0.0 MB</div>
+            <small style="color:#bf953f; font-weight:800;"><i class="fas fa-history"></i> LIFETIME</small>
+            <div id="life" style="font-size: 1.6em; font-weight: 900; color: var(--royal-emerald);">0.0 MB</div>
         </div>
         <div>
-            <small style="color:#bf953f; font-weight: 700;">LIVE SPEED (গতি)</small>
-            <div id="speed" style="font-size: 1.5em; font-weight: 900;">0.0 MB/s</div>
+            <small style="color:#bf953f; font-weight:800;"><i class="fas fa-bolt"></i> VELOCITY</small>
+            <div id="speed" style="font-size: 1.6em; font-weight: 900; color: var(--royal-emerald);">0.0 MB/s</div>
         </div>
     </div>
 
     <div class="glass-panel">
-        <div class="input-row">
-            <input type="number" id="val" placeholder="Enter Amount (পরিমাণ লিখুন)">
-            <select id="unit">
+        <div style="font-family:'Amiri', serif; text-align:center; font-size:1.4em; color:var(--antique-gold); margin-bottom:15px;">وَقُل رَّبِّ زِدْنِي عِلْمًا</div>
+        <div style="display: flex; gap: 15px; margin-bottom: 25px;">
+            <input type="number" id="val" placeholder="পরিমাণ লিখুন" style="flex:2; padding:15px; border-radius:15px; border:1px solid #ddd; outline: none;">
+            <select id="unit" style="flex:1; border-radius:15px; border:1.5px solid #bf953f; font-weight:bold; background: #fff;">
                 <option value="MB">MB</option>
                 <option value="GB" selected>GB</option>
             </select>
         </div>
-        <button class="btn-launch" onclick="launch()">ACTIVATE TURBO DRAIN (ইঞ্জিন চালু করুন) ☪</button>
+        <button class="btn-launch" onclick="launch()">PROTOCOL ACTIVATION ☪</button>
         
-        <div class="light-terminal" id="term">
-            <div>[STATUS] সিস্টেম প্রস্তুত (System Ready)...</div>
+        <div id="term" class="terminal-light" style="margin-top:20px;">
+            <div>[System] Ready. Waiting for Talhah's command...</div>
         </div>
-
-        <div style="width:100%; height:8px; background:#eee; border-radius:10px; margin-top:25px; overflow:hidden;">
+        
+        <div style="width:100%; height:8px; background:#eee; border-radius:10px; margin-top:25px; overflow:hidden; border: 1px solid var(--antique-gold);">
             <div id="prog" style="width:0%; height:100%; background:linear-gradient(90deg, #bf953f, #013220); transition:0.3s;"></div>
         </div>
     </div>
 
-    <div class="glass-panel" style="margin-bottom: 60px;">
-        <h3 style="font-family:'Amiri', serif; color: var(--royal-emerald); margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+    <div class="glass-panel">
+        <h3 style="font-family:'Amiri', serif; color: var(--royal-emerald); border-bottom: 2px solid #bf953f; display: inline-block; font-size: 1.8em; margin-bottom: 20px;">
             Professional Hub (পেশাদার তথ্য)
         </h3>
-        <p style="font-size: 0.95em; line-height: 1.8; color: #444;">
-            <strong>ত্বলহা (Talhah)</strong> একজন প্রফেশনাল গ্রাফিক্স ডিজাইনার, যিনি লোগো ব্র্যান্ডিং এবং এরাবিক ক্যালিগ্রাফি বিশেষজ্ঞ। 
-            He is also a Python developer and Cyber Security enthusiast। 
-            He has worked on projects like <strong>Madrasa Management System</strong> and <strong>Talhah Wire Crack Tool</strong>।
-        </p>
-        <div style="margin-top: 15px;">
-            <span class="badge">PROCREATE (প্রো-ক্রিয়েট)</span>
-            <span class="badge">PYTHON (পাইথন)</span>
-            <span class="badge">LOGO BRANDING (লোগো ডিজাইন)</span>
-            <span class="badge">KALI LINUX (কালি লিনাক্স)</span>
+        
+        <div style="margin: 10px 0 20px;">
+            <div class="badge"><i class="fas fa-compass"></i> SURVEYOR (সার্ভেয়ার)</div>
+            <div class="badge"><i class="fas fa-user-secret"></i> ETHICAL HACKER (হ্যাকার)</div>
+            <div class="badge"><i class="fas fa-pen-nib"></i> DESIGNER (ডিজাইনার)</div>
+            <div class="badge"><i class="fas fa-palette"></i> GRAPHIC DESIGNER</div>
+            <div class="badge"><i class="fab fa-python"></i> PYTHON CODER</div>
+            <div class="badge"><i class="fas fa-shield-alt"></i> CYBER SECURITY</div>
         </div>
+
+        <p style="font-size: 0.95em; line-height: 1.8; color: #444; border-left: 4px solid var(--antique-gold); padding-left: 15px;">
+            <strong>ত্বলহা (Talhah)</strong> একজন বহুমুখী প্রতিভা। তিনি একইসাথে একজন দক্ষ <strong>সার্ভেয়ার</strong>, <strong>ইথিক্যাল হ্যাকার</strong> এবং <strong>ক্রিয়েটিভ ডিজাইনার</strong>।
+            তার কাজের ক্ষেত্র গ্রাফিক্স ডিজাইন থেকে শুরু করে পাইথন কোডিং এবং লোগো ব্র্যান্ডিং পর্যন্ত বিস্তৃত।
+        </p>
+
+        <h4 style="margin: 25px 0 15px; color: #bf953f; font-family:'Hind Siliguri';"><i class="fas fa-address-book"></i> সরাসরি যোগাযোগ</h4>
+        <a href="https://wa.me/8801933988628" target="_blank" class="social-btn btn-wa">
+            <i class="fab fa-whatsapp" style="font-size: 1.4em;"></i> WhatsApp: 01933988628
+        </a>
     </div>
 
     <script>
-        let life = parseFloat(localStorage.getItem('talha_bilingual_v12')) || 0;
+        let life = parseFloat(localStorage.getItem('talha_master_v16')) || 0;
         document.getElementById('life').innerText = format(life);
 
         function format(b) {
@@ -170,21 +177,20 @@
         function log(msg) {
             const t = document.getElementById('term');
             const d = document.createElement('div');
-            const time = new Date().toLocaleTimeString();
-            d.innerHTML = `<span style="color:#bf953f;">[${time}]</span> ${msg}`;
+            d.innerHTML = `<span style="color:#bf953f;">[${new Date().toLocaleTimeString()}]</span> ${msg}`;
             t.appendChild(d); t.scrollTop = t.scrollHeight;
         }
 
         async function launch() {
             const v = document.getElementById('val').value;
             const u = document.getElementById('unit').value;
-            if(!v) return alert("পরিমাণ দিন (Please enter amount)!");
+            if(!v) return alert("পরিমাণ দিন!");
 
             const target = u === 'GB' ? v * 1024 * 1024 * 1024 : v * 1024 * 1024;
             let cur = 0; const sTime = Date.now();
             const url = "https://speed.cloudflare.com/__down?bytes=50000000";
 
-            log(`ইঞ্জিন চালু হচ্ছে (Initializing)... Target: ${v}${u}`);
+            log(`ইঞ্জিন সক্রিয় হচ্ছে... লক্ষ্য: ${v}${u}`);
 
             async function pull() {
                 while(cur < target) {
@@ -192,19 +198,14 @@
                         const res = await fetch(url + "&t=" + Math.random(), { cache: 'no-store' });
                         const b = await res.arrayBuffer();
                         cur += b.byteLength; life += b.byteLength;
-
-                        let p = (cur/target*100).toFixed(1);
-                        document.getElementById('prog').style.width = p + "%";
+                        document.getElementById('prog').style.width = (cur/target*100).toFixed(1) + "%";
                         document.getElementById('life').innerText = format(life);
-                        localStorage.setItem('talha_bilingual_v12', life);
-
-                        let spd = (cur / (1024*1024) / ((Date.now()-sTime)/1000)).toFixed(1);
-                        document.getElementById('speed').innerText = spd + " MB/s";
-                        
-                        if(Math.random() > 0.92) log(`প্যাকেট রিসিভড (Packet Received): ${format(b.byteLength)}`);
-                    } catch(e) { log("সংযোগ সমস্যা (Connection Lost)... Retrying."); }
+                        localStorage.setItem('talha_master_v16', life);
+                        document.getElementById('speed').innerText = (cur / (1024*1024) / ((Date.now()-sTime)/1000)).toFixed(1) + " MB/s";
+                        if(Math.random() > 0.95) log(`ডেটা প্যাকেট সফলভাবে প্রসেসড: ${format(b.byteLength)}`);
+                    } catch(e) { }
                 }
-                log("আলহামদুলিল্লাহ! টাস্ক সম্পন্ন (Task Finished) ✅");
+                log("আলহামদুলিল্লাহ! টাস্ক সম্পন্ন হয়েছে ✅");
             }
             for(let i=0; i<12; i++) pull();
         }
