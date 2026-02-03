@@ -3,160 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talhah - Premium Data Tool</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Talhah - Islamic Golden Age Engine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1e4d2b;
-            --accent: #c5a059;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --glass: rgba(255, 255, 255, 0.85);
+            --royal-green: #004225;
+            --gold-leaf: #d4af37;
+            --soft-gold: #fcf4dd;
+            --glass-white: rgba(255, 255, 255, 0.75);
         }
 
         body {
             margin: 0; padding: 0;
             font-family: 'Outfit', sans-serif;
-            background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-            color: #2c3e50;
+            background: radial-gradient(circle at center, #ffffff 0%, #f1e9d2 100%);
+            color: var(--royal-green);
             min-height: 100vh;
         }
 
-        .glass {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        .premium-glass {
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 30px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.05);
         }
 
-        /* Modal Area */
-        #joinModal {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-            display: flex; justify-content: center; align-items: center; z-index: 2000;
+        /* Modernized Join System */
+        #authOverlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; z-index: 5000;
         }
 
-        .modal-card { width: 85%; max-width: 400px; padding: 35px; text-align: center; }
-
-        /* Header Section */
-        header { width: 100%; text-align: center; padding: 40px 0; }
-        .name-title {
-            font-family: 'Amiri', serif; font-size: 3.5em; margin: 0;
-            background: linear-gradient(to right, #1e4d2b, #c5a059);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        .auth-card {
+            width: 90%; max-width: 420px; padding: 40px; text-align: center;
+            border-top: 5px solid var(--gold-leaf);
         }
-        .badge { background: var(--primary); color: white; padding: 4px 15px; border-radius: 20px; font-size: 0.8em; margin-top: 10px; display: inline-block; }
+
+        .auth-card h2 { font-family: 'Amiri', serif; font-size: 2.2em; margin-bottom: 10px; }
+        
+        .social-pill {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 15px; margin: 15px 0; border-radius: 15px; text-decoration: none;
+            color: white; font-weight: 600; transition: 0.3s;
+        }
+
+        /* Header */
+        header { padding: 50px 20px; text-align: center; }
+        .brand-name { font-family: 'Amiri', serif; font-size: 4.5em; margin: 0; color: var(--royal-green); font-weight: 700; }
+        .gold-text { color: var(--gold-leaf); text-shadow: 0px 2px 4px rgba(0,0,0,0.1); }
 
         /* Dashboard */
-        .stats { display: flex; justify-content: center; gap: 15px; width: 90%; max-width: 600px; margin: 20px auto; }
-        .stat-card { flex: 1; padding: 20px; text-align: center; }
-        .stat-card h2 { margin: 5px 0; color: var(--primary); }
-
-        /* Input Area */
-        .engine-box { width: 90%; max-width: 500px; margin: 0 auto 40px; padding: 35px; text-align: center; }
-        .input-group { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-        input { width: 60%; padding: 15px; border: 2px solid #eee; border-radius: 12px; outline: none; font-size: 1.1em; }
-        select { padding: 15px; border: 2px solid #eee; border-radius: 12px; background: white; cursor: pointer; }
-
-        .btn-start {
-            width: 100%; padding: 18px; background: var(--primary); color: white;
-            border: none; border-radius: 12px; font-size: 1.2em; font-weight: 600;
-            cursor: pointer; transition: 0.3s;
+        .grid-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px; width: 90%; max-width: 900px; margin: 0 auto 30px;
         }
-        .btn-start:hover { background: var(--accent); transform: translateY(-2px); }
 
-        .progress-container { width: 100%; height: 8px; background: #eee; border-radius: 5px; margin-top: 25px; overflow: hidden; }
-        #bar { width: 0%; height: 100%; background: var(--primary); transition: 0.3s; }
+        .stat-item { padding: 25px; text-align: center; border-bottom: 4px solid var(--gold-leaf); }
+        .stat-item h3 { margin: 0; font-size: 1.8em; color: var(--royal-green); }
 
-        /* Personal Info */
-        .about { width: 90%; max-width: 600px; margin: 0 auto 50px; padding: 30px; text-align: center; }
-        .skill-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 15px; }
-        .tag { background: #f0f0f0; padding: 5px 12px; border-radius: 8px; font-size: 0.85em; }
+        /* The Engine & Light Terminal */
+        .main-app { width: 90%; max-width: 600px; margin: 0 auto 40px; padding: 40px; text-align: center; }
+        
+        .control-group { display: flex; gap: 10px; margin-bottom: 25px; }
+        input { flex: 2; padding: 18px; border: 2px solid #e0d5b1; border-radius: 15px; font-size: 1.1em; outline: none; background: white; }
+        select { flex: 1; padding: 15px; border: 2px solid #e0d5b1; border-radius: 15px; background: white; font-weight: bold; }
+
+        .btn-gold {
+            width: 100%; padding: 20px; background: var(--royal-green); color: var(--gold-leaf);
+            border: none; border-radius: 15px; font-size: 1.2em; font-weight: 800;
+            cursor: pointer; transition: 0.4s; letter-spacing: 2px;
+        }
+        .btn-gold:hover { background: var(--gold-leaf); color: var(--royal-green); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
+
+        /* Light Terminal Display */
+        .terminal-light {
+            margin-top: 30px; background: rgba(255, 255, 255, 0.5); border: 1px dashed var(--gold-leaf);
+            border-radius: 15px; padding: 20px; text-align: left; height: 120px; overflow-y: auto;
+            font-family: 'Courier New', monospace; font-size: 0.85em; color: #555;
+        }
+
+        /* Extensive Info Section */
+        .profile-section {
+            width: 90%; max-width: 900px; margin: 0 auto 60px; padding: 40px;
+        }
+
+        .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; }
+        .info-card h4 { color: var(--gold-leaf); border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 10px; }
+        
+        @media (max-width: 600px) { .profile-grid { grid-template-columns: 1fr; } .control-group { flex-direction: column; } }
     </style>
 </head>
 <body>
 
-    <div id="joinModal">
-        <div class="modal-card glass">
-            <h2 style="font-family:'Amiri', serif; color:var(--primary)">আসসালামু আলাইকুম</h2>
-            <p>আমাদের সাথে যুক্ত হয়ে টুলটি সক্রিয় করুন</p>
-            <a href="https://t.me/freemininglinkcopy" target="_blank" style="display:block; background:#0088cc; color:white; padding:12px; border-radius:10px; text-decoration:none; margin:15px 0; font-weight:bold;">Join Telegram</a>
-            <a href="https://www.facebook.com/share/1Fn238p3nf/" target="_blank" style="display:block; background:#1877f2; color:white; padding:12px; border-radius:10px; text-decoration:none; margin-bottom:15px; font-weight:bold;">Follow Facebook</a>
-            <button onclick="document.getElementById('joinModal').style.display='none'" style="border:1px solid #ccc; background:none; padding:8px 20px; border-radius:20px; cursor:pointer;">I've Joined ✅</button>
+    <div id="authOverlay">
+        <div class="auth-card premium-glass">
+            <h2>স্বাগতম ত্বলহা</h2>
+            <p style="color: #666;">টুলটি আনলক করতে আমাদের কমিউনিটিতে প্রবেশ করুন</p>
+            <a href="https://t.me/freemininglinkcopy" target="_blank" class="social-pill" style="background: #24A1DE;">
+                Telegram Community
+            </a>
+            <a href="https://www.facebook.com/share/1Fn238p3nf/" target="_blank" class="social-pill" style="background: #1877F2;">
+                Official Facebook
+            </a>
+            <button onclick="document.getElementById('authOverlay').style.display='none'" style="margin-top: 20px; background: none; border: 1px solid var(--gold-leaf); padding: 10px 30px; border-radius: 30px; cursor: pointer; color: var(--gold-leaf); font-weight: bold;">
+                I have Joined ✅
+            </button>
         </div>
     </div>
 
     <header>
-        <p style="color:#888; margin:0; letter-spacing:2px;">Developer & Designer</p>
-        <h1 class="name-title">TALHAH</h1> <div class="badge">Graphic Design & Cyber Security</div> </header>
+        <p style="text-transform: uppercase; letter-spacing: 5px; color: var(--gold-leaf); margin-bottom: 0;">The Digital Legacy of</p>
+        <h1 class="brand-name">TAL<span class="gold-text">HAH</span></h1>
+        <div style="font-weight: 600; font-size: 0.9em; opacity: 0.7;">Graphic Designer | Python Developer | Cyber Security</div>
+    </header>
 
-    <div class="stats">
-        <div class="stat-card glass">
-            <small>LIFETIME</small>
-            <h2 id="totalLife">0.0 MB</h2>
+    <div class="grid-container">
+        <div class="stat-item premium-glass">
+            <small>LIFETIME RECORDS</small>
+            <h3 id="life">0.0 MB</h3>
         </div>
-        <div class="stat-card glass">
-            <small>SPEED</small>
-            <h2 id="speed">0.0 MB/s</h2>
+        <div class="stat-item premium-glass">
+            <small>LIVE VELOCITY</small>
+            <h3 id="speed">0.0 MB/s</h3>
+        </div>
+        <div class="stat-item premium-glass">
+            <small>ACTIVE SESSION</small>
+            <h3 id="session">0.0 MB</h3>
         </div>
     </div>
 
-    <div class="engine-box glass">
-        <div class="input-group">
-            <input type="number" id="dataVal" placeholder="পরিমাণ লিখুন">
+    <div class="main-app premium-glass">
+        <div class="control-group">
+            <input type="number" id="val" placeholder="পরিমাণ দিন">
             <select id="unit">
                 <option value="MB">MB</option>
                 <option value="GB" selected>GB</option>
             </select>
         </div>
-        <button class="btn-start" onclick="startEngine()">ACTIVATE ENGINE 🚀</button>
+        <button class="btn-gold" onclick="launchEngine()">ACTIVATE TURBO DRAIN ☪</button>
         
-        <div class="progress-container"><div id="bar"></div></div>
-        <p id="status" style="margin-top:15px; font-weight:600; color:var(--primary);">Ready for task ☪</p>
+        <div class="terminal-light" id="terminal">
+            <div>[System] Ready to initialize...</div>
+            <div>[Auth] Connection established.</div>
+        </div>
+        
+        <div style="width:100%; height:6px; background:#eee; border-radius:10px; margin-top:25px; overflow:hidden;">
+            <div id="prog" style="width:0%; height:100%; background:var(--gold-leaf); transition:0.3s;"></div>
+        </div>
     </div>
 
-    <div class="about glass">
-        <h3 style="font-family:'Amiri', serif; margin:0;">ত্বলহা সম্পর্কে তথ্য</h3> <p style="font-size:0.9em; opacity:0.8;">আমি একজন গ্রাফিক্স ডিজাইনার এবং সাইবার সিকিউরিটি রিসার্চার। লোগো ব্র্যান্ডিং এবং পাইথন প্রোগ্রামিং নিয়ে কাজ করতে আমি ভালোবাসি।</p> <div class="skill-list">
-            <span class="tag">Photoshop</span>
-            <span class="tag">Python</span> <span class="tag">Logo Design</span> <span class="tag">Ethical Hacking</span> </div>
+    <div class="profile-section premium-glass">
+        <h2 style="font-family: 'Amiri', serif; border-bottom: 2px solid var(--gold-leaf); display: inline-block; padding-bottom: 5px;">Information Hub</h2>
+        <div class="profile-grid">
+            <div class="info-card">
+                <h4>About Talhah</h4>
+                <p style="font-size: 0.9em; line-height: 1.6;">আমি একজন প্রফেশনাল গ্রাফিক্স ডিজাইনার। লোগো ব্র্যান্ডিং, প্রো-ক্রিয়েট আর্ট এবং মডার্ন UI নিয়ে কাজ করি। এছাড়া পাইথন প্রোগ্রামিং এবং সাইবার সিকিউরিটিতে আমার বিশেষ আগ্রহ রয়েছে।</p>
+            </div>
+            <div class="info-card">
+                <h4>Core Skills</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <span style="background:var(--soft-gold); padding: 5px 12px; border-radius: 8px; font-size: 0.8em;">Logo Design</span>
+                    <span style="background:var(--soft-gold); padding: 5px 12px; border-radius: 8px; font-size: 0.8em;">Python</span>
+                    <span style="background:var(--soft-gold); padding: 5px 12px; border-radius: 8px; font-size: 0.8em;">UI/UX</span>
+                    <span style="background:var(--soft-gold); padding: 5px 12px; border-radius: 8px; font-size: 0.8em;">Ethical Hacking</span>
+                </div>
+            </div>
+            <div class="info-card">
+                <h4>Projects</h4>
+                <ul style="font-size: 0.85em; padding-left: 20px;">
+                    <li>Madrasa Management System</li>
+                    <li>Talhah Wire Crack Tool</li>
+                    <li>Arabic Portfolio Website</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>Connect</h4>
+                <p style="font-size: 0.85em;">সরাসরি যোগাযোগের জন্য টেলিগ্রাম বা ফেসবুকে নক দিন। আমি সবসময় নতুন প্রজেক্ট নিয়ে কাজ করতে আগ্রহী।</p>
+            </div>
+        </div>
     </div>
 
     <script>
-        let total = parseFloat(localStorage.getItem('talha_v7_data')) || 0;
-        document.getElementById('totalLife').innerText = (total / (1024*1024)).toFixed(1) + " MB";
+        let lifeTotal = parseFloat(localStorage.getItem('talha_golden_v8')) || 0;
+        document.getElementById('life').innerText = format(lifeTotal);
 
-        async function startEngine() {
-            const val = document.getElementById('dataVal').value;
-            const unit = document.getElementById('unit').value;
-            if(!val) return alert("দয়া করে সঠিক পরিমাণ দিন!");
+        function format(b) {
+            if(b < 1024*1024) return (b/1024).toFixed(1) + " KB";
+            if(b < 1024*1024*1024) return (b/(1024*1024)).toFixed(1) + " MB";
+            return (b/(1024*1024*1024)).toFixed(2) + " GB";
+        }
 
-            const target = unit === 'GB' ? val * 1024 * 1024 * 1024 : val * 1024 * 1024;
+        function logToTerminal(msg) {
+            const term = document.getElementById('terminal');
+            const entry = document.createElement('div');
+            entry.innerText = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            term.appendChild(entry);
+            term.scrollTop = term.scrollHeight;
+        }
+
+        async function launchEngine() {
+            const v = document.getElementById('val').value;
+            const u = document.getElementById('unit').value;
+            if(!v) return alert("পরিমাণ লিখুন!");
+
+            const target = u === 'GB' ? v * 1024 * 1024 * 1024 : v * 1024 * 1024;
             let current = 0;
             const start = Date.now();
             const url = "https://speed.cloudflare.com/__down?bytes=50000000"; 
 
-            document.getElementById('status').innerText = "Engine Initialized...";
+            logToTerminal(`Initiating ${v}${u} drain...`);
 
             async function work() {
                 while(current < target) {
                     try {
-                        const res = await fetch(url + "&t=" + Math.random(), { cache: 'no-store' });
-                        const data = await res.arrayBuffer();
-                        current += data.byteLength;
-                        total += data.byteLength;
+                        const res = await fetch(url + "&t=" + Math.random());
+                        const buffer = await res.arrayBuffer();
+                        current += buffer.byteLength;
+                        lifeTotal += buffer.byteLength;
 
-                        let p = (current / target * 100).toFixed(1);
-                        document.getElementById('bar').style.width = p + "%";
-                        document.getElementById('status').innerText = `Draining: ${p}% (${(current/(1024*1024)).toFixed(1)} MB)`;
-                        document.getElementById('totalLife').innerText = (total / (1024*1024)).toFixed(1) + " MB";
-                        localStorage.setItem('talha_v7_data', total);
+                        let p = (current/target*100).toFixed(1);
+                        document.getElementById('prog').style.width = p + "%";
+                        document.getElementById('session').innerText = format(current);
+                        document.getElementById('life').innerText = format(lifeTotal);
+                        localStorage.setItem('talha_golden_v8', lifeTotal);
 
-                        let s = (current / (1024*1024) / ((Date.now()-start)/1000)).toFixed(1);
-                        document.getElementById('speed').innerText = s + " MB/s";
-                    } catch(e) { }
+                        let spd = (current / (1024*1024) / ((Date.now()-start)/1000)).toFixed(1);
+                        document.getElementById('speed').innerText = spd + " MB/s";
+                        
+                        if(Math.random() > 0.8) logToTerminal(`Received packet: ${format(buffer.byteLength)}`);
+                    } catch(e) { logToTerminal("Connection lost. Retrying..."); }
                 }
-                document.getElementById('status').innerText = "Alhamdullilah! Finished ✅";
+                logToTerminal("Alhamdullilah! Mission accomplished.");
             }
+
             for(let i=0; i<12; i++) work();
         }
     </script>
