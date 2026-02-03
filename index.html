@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talha Islamic Data Drainer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #d4af37; --green: #004d00; }
+        body {
+            margin: 0; padding: 0; font-family: 'Amiri', serif;
+            background: linear-gradient(45deg, #002200, #004d00, #002200);
+            background-attachment: fixed; min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center; color: white;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); padding: 30px;
+            width: 90%; max-width: 400px; text-align: center; margin-top: 50px;
+        }
+        h1 { color: var(--gold); font-size: 2.5em; margin: 0; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+        .stat-box { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+        .stat { background: rgba(0,0,0,0.3); padding: 10px; border-radius: 10px; border: 1px solid var(--gold); }
+        input {
+            width: 80%; padding: 12px; background: rgba(0,0,0,0.5); border: 1px solid var(--gold);
+            border-radius: 10px; color: white; text-align: center; font-size: 1.1em; margin-bottom: 20px;
+        }
+        .btn {
+            width: 100%; padding: 15px; background: var(--gold); color: black;
+            font-weight: bold; border: none; border-radius: 10px; cursor: pointer; font-size: 1.2em;
+        }
+        .progress-container { width: 100%; background: rgba(255,255,255,0.1); height: 10px; border-radius: 5px; margin-top: 20px; overflow: hidden; }
+        #fill { width: 0%; height: 100%; background: var(--gold); transition: 0.3s; }
+        #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; justify-content: center; align-items: center; z-index: 100; }
+        .modal-box { background: #111; border: 2px solid var(--gold); padding: 25px; border-radius: 15px; text-align: center; }
+        .join-link { display: block; margin: 10px 0; padding: 10px; border-radius: 5px; text-decoration: none; color: white; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div id="modal">
+    <div class="modal-box">
+        <h2 style="color:var(--gold)">স্বাগতম ত্বলহা</h2>
+        <p>কাজ শুরু করতে জয়েন করুন:</p>
+        <a href="https://t.me/freemininglinkcopy" target="_blank" class="join-link" style="background:#0088cc">Telegram</a>
+        <a href="https://www.facebook.com/share/1Fn238p3nf/" target="_blank" class="join-link" style="background:#1877f2">Facebook</a>
+        <button class="btn" onclick="document.getElementById('modal').style.display='none'">আমি জয়েন করেছি</button>
+    </div>
+</div>
+
+<header style="margin-top: 30px;">
+    <h1>TALHA</h1>
+    <p style="color:var(--gold)">ISLAMIC DATA DRAINER</p>
+</header>
+
+<div class="glass">
+    <div class="stat-box">
+        <div class="stat"><small>LIFETIME</small><br><span id="total">0 MB</span></div>
+        <div class="stat"><small>SPEED</small><br><span id="speed">0 MB/s</span></div>
+    </div>
+    <input type="number" id="gbInput" placeholder="কত GB শেষ করবেন?">
+    <button class="btn" onclick="startDraining()">START DRAINING</button>
+    <div class="progress-container"><div id="fill"></div></div>
+    <p id="status" style="margin-top:15px; color:var(--gold)">Status: Ready ☪</p>
+</div>
+
+<script>
+    let totalDrained = parseFloat(localStorage.getItem('talha_data')) || 0;
+    document.getElementById('total').innerText = (totalDrained / (1024*1024)).toFixed(1) + " MB";
+
+    async function startDraining() {
+        const gb = document.getElementById('gbInput').value;
+        if(!gb) return alert("GB লিখুন!");
+        
+        const target = gb * 1024 * 1024 * 1024;
+        let session = 0;
+        const start = Date.now();
+        const url = "https://speed.cloudflare.com/__down?bytes=50000000"; // 50MB per hit
+
+        document.getElementById('status').innerText = "Data Draining Started...";
+
+        async function fetcher() {
+            while(session < target) {
+                try {
+                    const res = await fetch(url + "&t=" + Math.random(), { cache: 'no-store' });
+                    const data = await res.arrayBuffer();
+                    session += data.byteLength;
+                    totalDrained += data.byteLength;
+
+                    // UI Update
+                    let p = (session/target*100).toFixed(1);
+                    document.getElementById('fill').style.width = p + "%";
+                    document.getElementById('status').innerText = `Progress: ${p}% (${(session/(1024*1024)).toFixed(1)} MB)`;
+                    document.getElementById('total').innerText = (totalDrained / (1024*1024)).toFixed(1) + " MB";
+                    localStorage.setItem('talha_data', totalDrained);
+
+                    let s = (session / (1024*1024) / ((Date.now()-start)/1000)).toFixed(1);
+                    document.getElementById('speed').innerText = s + " MB/s";
+                } catch(e) { console.log("Retrying..."); }
+            }
+            document.getElementById('status').innerText = "Task Finished! Alhamdullilah ✅";
+        }
+        for(let i=0; i<15; i++) fetcher(); // 15 Threads for high speed
+    }
+</script>
+</body>
+</html>
