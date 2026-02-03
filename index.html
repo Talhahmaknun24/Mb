@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Golden Protocol - Professional Tool</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -19,8 +20,8 @@
 
         body {
             margin: 0; padding: 0;
-            /* Box    System Font Stack    */
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            /*           */
+            font-family: 'Noto Serif Bengali', 'Playfair Display', serif;
             background: var(--bg-silk);
             color: var(--emerald);
             min-height: 100vh;
@@ -46,10 +47,15 @@
 
         /* Header */
         header { text-align: center; padding: 40px 10px; }
+        
+        /* "THE ENGINE"     */
         .tool-title {
-            font-size: 2.8em; margin: 0; font-weight: 900;
+            font-family: 'Playfair Display', serif;
+            font-size: 4em; /*     */
+            margin: 0; font-weight: 900;
             background: var(--gold-grad); -webkit-background-clip: text;
             -webkit-text-fill-color: transparent; letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(184, 138, 68, 0.3); /*     */
         }
 
         /* Join Portal */
@@ -67,6 +73,7 @@
         input, select {
             padding: 15px; border: 1.5px solid var(--gold); border-radius: 12px;
             font-size: 1em; background: #fff; outline: none; flex: 1;
+            font-family: 'Noto Serif Bengali', serif; /*    */
         }
         .btn-launch {
             width: 100%; padding: 20px; border-radius: 15px; border: none;
@@ -159,7 +166,7 @@
             <div class="skill-info"><h4>Surveyor ()</h4><p>      </p></div>
         </div>
         <div class="skill-item">
-            <div class="icon-circle"><i class="fas fa-user-secret"></i></div>
+            <div class="icon-circle"><i class="fas fa-user-shield"></i></div>
             <div class="skill-info"><h4>Ethical Hacker</h4><p>     </p></div>
         </div>
         <div class="skill-item">
@@ -199,7 +206,7 @@
                         document.getElementById('speed').innerText = (cur / (1024*1024) / ((Date.now()-sTime)/1000)).toFixed(1) + " MB/s";
                     } catch(e) { }
                 }
-                log("!    ");
+                log("!    ");
             }
             for(let i=0; i<8; i++) pull();
         }
