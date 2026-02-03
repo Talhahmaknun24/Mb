@@ -3,155 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Golden Data Protocol - Pro App</title>
-    
-    <meta name="theme-color" content="#003323">
-    <link rel="manifest" href="https://raw.githubusercontent.com/alif-imtiaz/pwa/main/manifest.json">
+    <title>Golden Protocol - Aurora Edition</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Outfit:wght@300;600;900&family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg: #fcfaf2;
-            --emerald: #002e1d;
-            --gold-grad: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728);
-            --glass: rgba(255, 255, 255, 0.9);
-            --wa-green: #25D366;
+            /* Vibrant Light Spectrum Palette */
+            --aurora-grad: linear-gradient(120deg, #84fab0 0%, #8fd3f4 25%, #f8bbd0 50%, #f6d365 75%, #d4af37 100%);
+            --deep-text: #004d40;
+            --glass-heavy: rgba(255, 255, 255, 0.65);
+            --gold-accent: #d4af37;
+            --wa-green: #00e676;
         }
 
         body {
             margin: 0; padding: 0; font-family: 'Outfit', 'Hind Siliguri', sans-serif;
-            background: var(--bg) url('https://www.transparenttextures.com/patterns/cream-paper.png');
-            color: var(--emerald); min-height: 100vh; overflow-x: hidden;
+            /* Animated Colorful Background */
+            background: var(--aurora-grad);
+            background-size: 400% 400%;
+            animation: auroraMove 15s ease infinite;
+            color: var(--deep-text); min-height: 100vh; overflow-x: hidden;
         }
 
-        /* Luxury Calligraphy Background */
+        @keyframes auroraMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* MASSIVE Calligraphy Watermark */
         .calligraphy-watermark {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-10deg);
-            font-family: 'Amiri', serif; font-size: 20vw; color: rgba(184, 138, 68, 0.08);
-            z-index: -1; pointer-events: none; user-select: none;
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-5deg);
+            font-family: 'Amiri', serif; font-size: 25vw; 
+            background: linear-gradient(45deg, rgba(255,255,255,0.4), rgba(212, 175, 55, 0.2));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            z-index: -1; pointer-events: none; user-select: none; font-weight: 900;
         }
 
-        .glass-card {
-            background: var(--glass); backdrop-filter: blur(20px);
-            border: 2.5px solid #bf953f; border-radius: 35px;
-            padding: 35px; margin: 25px auto; max-width: 600px;
-            box-shadow: 0 20px 50px rgba(184, 138, 68, 0.15);
+        /* DEEP Glass Containers */
+        .mega-glass {
+            background: var(--glass-heavy);
+            backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 40px; padding: 50px; margin: 40px auto;
+            max-width: 900px; /* Much wider */
+            box-shadow: 0 30px 80px rgba(0, 64, 64, 0.15), inset 0 0 30px rgba(255,255,255,0.5);
+            position: relative; overflow: hidden;
+        }
+        .mega-glass::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+            pointer-events: none;
         }
 
-        header { text-align: center; padding-top: 40px; }
-        .tool-title { font-family: 'Amiri', serif; font-size: 2.5em; margin: 0; color: var(--emerald); }
-
-        /* Multi-Unit Controls */
-        .control-group { display: flex; gap: 12px; margin: 25px 0; }
-        input { flex: 2; padding: 18px; border-radius: 15px; border: 1.5px solid #ddd; font-size: 1.1em; outline: none; }
-        select { flex: 1; border-radius: 15px; border: 2px solid #bf953f; font-weight: bold; background: #fff; cursor: pointer; }
-
-        .btn-launch {
-            width: 100%; padding: 22px; border-radius: 20px; border: none;
-            background: var(--gold-grad); font-size: 1.3em; font-weight: 900;
-            color: var(--emerald); cursor: pointer; transition: 0.4s; box-shadow: 0 10px 30px rgba(184, 138, 68, 0.3);
+        /* Typography - BIGGER & COLORFUL */
+        header { text-align: center; padding: 80px 20px 40px; }
+        .main-title {
+            font-family: 'Amiri', serif; font-size: 5em; margin: 0; line-height: 1.2;
+            background: linear-gradient(to right, #00695c, #d4af37, #c2185b);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
         }
-        .btn-launch:hover { transform: scale(1.02); box-shadow: 0 15px 40px rgba(184, 138, 68, 0.5); }
-
-        /* Terminal Display */
-        .terminal-box {
-            background: #fff; border: 1px dashed #bf953f; border-radius: 15px;
-            padding: 20px; font-family: 'Courier New', monospace; height: 120px;
-            overflow-y: auto; font-size: 0.85em; margin-top: 20px; text-align: left;
+        .sub-title {
+            font-weight: 900; color: var(--deep-text); letter-spacing: 5px; 
+            font-size: 1.2em; text-transform: uppercase; margin-top: 10px;
         }
 
-        /* Portfolio Badges */
-        .badge {
-            background: rgba(191, 149, 63, 0.1); color: var(--emerald); 
-            padding: 8px 18px; border-radius: 50px; font-size: 0.85em; font-weight: bold; 
-            margin: 5px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid #bf953f;
+        /* Stats Section - DEEP Cards */
+        .stats-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .stat-card {
+            background: rgba(255,255,255,0.5); padding: 30px; border-radius: 30px;
+            border: 2px solid var(--gold-accent); text-align: center;
         }
-        .badge i { color: #b38728; }
+        .stat-num { font-size: 2.5em; font-weight: 900; background: var(--aurora-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* Social Buttons */
-        .wa-btn {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            background: var(--wa-green); color: white; padding: 15px; border-radius: 15px;
-            text-decoration: none; font-weight: 800; margin-top: 20px;
+        /* Engine Inputs - BIG & COLORFUL */
+        .input-group-mega { display: flex; gap: 20px; margin-bottom: 35px; }
+        input, select {
+            padding: 25px; border: 3px solid rgba(255,255,255,0.8); border-radius: 25px;
+            background: rgba(255,255,255,0.7); font-size: 1.5em; color: var(--deep-text);
+            font-weight: 700; outline: none; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            flex: 1; transition: 0.3s;
+        }
+        input:focus, select:focus { border-color: var(--gold-accent); transform: scale(1.02); }
+
+        .btn-mega {
+            width: 100%; padding: 30px; border-radius: 30px; border: none;
+            background: linear-gradient(45deg, #00b09b, #96c93d, #d4af37);
+            background-size: 200% auto; animation: gradientBtn 3s infinite alternate;
+            font-size: 1.8em; font-weight: 900; color: #fff; cursor: pointer;
+            box-shadow: 0 20px 50px rgba(0, 176, 155, 0.3); transition: 0.4s;
+        }
+        .btn-mega:hover { transform: translateY(-5px) scale(1.02); }
+        @keyframes gradientBtn { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+
+        /* Terminal */
+        .terminal-mega {
+            background: rgba(255,255,255,0.8); border: 3px dashed var(--gold-accent);
+            padding: 25px; font-family: 'Courier New', monospace; height: 150px;
+            overflow-y: auto; font-size: 1em; margin-top: 30px; border-radius: 25px;
         }
 
-        /* Join Modal */
-        #portal {
-            position: fixed; inset: 0; background: rgba(253, 252, 240, 0.98);
-            display: flex; justify-content: center; align-items: center; z-index: 9999;
+        /* Portfolio Badges - COLORFUL */
+        .badge-mega {
+            padding: 12px 25px; border-radius: 50px; font-size: 1em; font-weight: 800;
+            margin: 8px; display: inline-flex; align-items: center; gap: 10px;
+            background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid transparent; transition: 0.3s;
+        }
+        .b-surv { color: #00897b; border-color: #00897b; }
+        .b-hack { color: #d81b60; border-color: #d81b60; }
+        .b-desi { color: #1e88e5; border-color: #1e88e5; }
+        .b-pyth { color: #fbc02d; border-color: #fbc02d; }
+        .badge-mega:hover { transform: scale(1.1); color: #fff; }
+        .b-surv:hover { background: #00897b; } .b-hack:hover { background: #d81b60; }
+        .b-desi:hover { background: #1e88e5; } .b-pyth:hover { background: #fbc02d; }
+
+        /* Social Button */
+        .wa-btn-mega {
+            display: flex; align-items: center; justify-content: center; gap: 15px;
+            background: linear-gradient(45deg, #00e676, #00c853); color: white;
+            padding: 25px; border-radius: 30px; text-decoration: none; font-weight: 900;
+            font-size: 1.4em; margin-top: 40px; box-shadow: 0 15px 30px rgba(0, 230, 118, 0.3);
         }
     </style>
 </head>
 <body>
 
-    <div class="calligraphy-watermark">بسم الله الرحمن الرحيم</div>
+    <div class="calligraphy-watermark">   </div>
 
-    <div id="portal">
-        <div class="glass-card" style="max-width: 400px; text-align: center;">
-            <div style="font-family:'Amiri', serif; color:#bf953f; font-size: 1.5em; margin-bottom: 10px;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-            <h2 style="font-family:'Hind Siliguri'; margin:0;">আসসালামু আলাইকুম</h2>
-            <div style="height:3px; width:60px; background:var(--gold-grad); margin: 15px auto;"></div>
-            <p style="color:#555; font-size: 0.9em;">প্রিমিয়াম টুলটি সক্রিয় করতে আমাদের সাথে যুক্ত হোন</p>
-            
-            <a href="https://t.me/freemininglinkcopy" target="_blank" class="wa-btn" style="background:#0088cc;">
-                <i class="fab fa-telegram"></i> Telegram Channel
-            </a>
-            <a href="https://wa.me/8801933988628" target="_blank" class="wa-btn">
-                <i class="fab fa-whatsapp"></i> WhatsApp Me (01933988628)
-            </a>
-            
-            <button onclick="document.getElementById('portal').style.display='none'" style="margin-top:20px; border:1.5px solid #bf953f; background:none; padding:12px 40px; border-radius:30px; cursor:pointer; font-weight:900; color:#bf953f;">
-                ENTER ENGINE ✅
-            </button>
+    <header>
+        <div style="font-family:'Amiri', serif; font-size: 2.5em; color: var(--gold-accent);"> </div>
+        <h1 class="main-title">THE GOLDEN DATA PROTOCOL</h1>
+        <p class="sub-title">ULTRA AURORA EDITION v18</p>
+    </header>
+
+    <div class="mega-glass">
+        <div class="stats-container">
+            <div class="stat-card">
+                <small style="font-weight:800; color:var(--deep-text); font-size: 1.2em;"><i class="fas fa-database"></i>  </small>
+                <div id="life" class="stat-num">0.0 MB</div>
+            </div>
+            <div class="stat-card">
+                <small style="font-weight:800; color:var(--deep-text); font-size: 1.2em;"><i class="fas fa-tachometer-alt"></i>  </small>
+                <div id="speed" class="stat-num">0.0 MB/s</div>
+            </div>
         </div>
     </div>
 
-    <header>
-        <div style="font-family:'Amiri', serif; font-size: 1.5em; color: #bf953f; margin-bottom: -10px;">بِسْمِ اللَّهِ</div>
-        <h1 class="tool-title">THE GOLDEN DATA PROTOCOL</h1>
-        <p style="letter-spacing: 4px; font-weight: 800; color: #bf953f; font-size: 0.8em; margin-top: 5px;">PREMIUM ISLAMIC EDITION v17</p>
-    </header>
-
-    <div class="glass-card" style="display: flex; justify-content: space-around; text-align: center; padding: 25px;">
-        <div><small style="color:#bf953f; font-weight:800;"><i class="fas fa-database"></i> মোট ব্যবহার</small><div id="life" style="font-size: 1.4em; font-weight: 900;">0.0 MB</div></div>
-        <div><small style="color:#bf953f; font-weight:800;"><i class="fas fa-tachometer-alt"></i> বর্তমান গতি</small><div id="speed" style="font-size: 1.4em; font-weight: 900;">0.0 MB/s</div></div>
-    </div>
-
-    <div class="glass-card">
-        <div class="control-group">
-            <input type="number" id="val" placeholder="পরিমাণ লিখুন (Amount)">
+    <div class="mega-glass" style="text-align: center;">
+        <div class="input-group-mega">
+            <input type="number" id="val" placeholder=" (Amount)">
             <select id="unit">
                 <option value="MB">MB</option>
                 <option value="GB" selected>GB</option>
             </select>
         </div>
-        <button class="btn-launch" onclick="start()">ইঞ্জিন চালু করুন (ACTIVATE) 🚀</button>
+        <button class="btn-mega" onclick="start()">   (ACTIVATE) </button>
         
-        <div id="term" class="terminal-box">
-            <div>[System] ত্বলহা'র নির্দেশের অপেক্ষায়...</div>
+        <div id="term" class="terminal-mega" style="text-align: left;">
+            <div>[System] Aurora Engine Ready. Waiting for Talhah...</div>
         </div>
         
-        <div style="width:100%; height:8px; background:#eee; border-radius:10px; margin-top:25px; overflow:hidden; border: 1px solid #bf953f;">
-            <div id="prog" style="width:0%; height:100%; background:var(--gold-grad); transition:0.3s;"></div>
+        <div style="width:100%; height:15px; background:rgba(255,255,255,0.5); border-radius:20px; margin-top:40px; overflow:hidden; border: 3px solid #fff;">
+            <div id="prog" style="width:0%; height:100%; background:var(--aurora-grad); transition:0.3s;"></div>
         </div>
     </div>
 
-    <div class="glass-card">
-        <h3 style="font-family:'Amiri', serif; font-size: 1.8em; border-bottom: 2px solid #bf953f; display: inline-block;">পেশাদার তথ্য (Portfolio)</h3>
-        <div style="margin: 15px 0;">
-            <div class="badge"><i class="fas fa-compass"></i> SURVEYOR</div> <div class="badge"><i class="fas fa-user-secret"></i> ETHICAL HACKER</div> <div class="badge"><i class="fas fa-pen-nib"></i> DESIGNER</div> <div class="badge"><i class="fab fa-python"></i> PYTHON CODER</div> </div>
-        <p style="font-size: 0.9em; line-height: 1.8; color: #444;">
-            <strong>ত্বলহা (Talhah)</strong> একজন বহুমুখী প্রতিভা। তিনি একইসাথে একজন দক্ষ <strong>সার্ভেয়ার</strong>, <strong>ইথিক্যাল হ্যাকার</strong> এবং <strong>ক্রিয়েটিভ ডিজাইনার</strong>। লোগো ব্র্যান্ডিং থেকে পাইথন কোডিং পর্যন্ত তার কাজের পরিধি বিস্তৃত।
+    <div class="mega-glass">
+        <h3 style="font-family:'Amiri', serif; font-size: 3em; border-bottom: 4px solid var(--gold-accent); display: inline-block; margin-top: 0; color: var(--deep-text);">
+            Professional Hub ( )
+        </h3>
+        
+        <div style="margin: 30px 0;">
+            <div class="badge-mega b-surv"><i class="fas fa-compass fa-lg"></i> SURVEYOR</div>
+            <div class="badge-mega b-hack"><i class="fas fa-user-secret fa-lg"></i> ETHICAL HACKER</div>
+            <div class="badge-mega b-desi"><i class="fas fa-palette fa-lg"></i> DESIGNER</div>
+            <div class="badge-mega b-pyth"><i class="fab fa-python fa-lg"></i> PYTHON DEV</div>
+        </div>
+        
+        <p style="font-size: 1.3em; line-height: 1.8; font-weight: 600; color: var(--deep-text);">
+            <strong> (Talhah)</strong>        <strong></strong>, <strong> </strong>  <strong> </strong>
         </p>
-        <a href="https://wa.me/8801933988628" target="_blank" class="wa-btn">
-            <i class="fab fa-whatsapp"></i> সরাসরি হোয়াটসঅ্যাপ করুন
+        <a href="https://wa.me/8801933988628" target="_blank" class="wa-btn-mega">
+            <i class="fab fa-whatsapp fa-2x"></i>   
         </a>
     </div>
 
     <script>
-        let life = parseFloat(localStorage.getItem('talha_app_v17')) || 0;
+        let life = parseFloat(localStorage.getItem('talha_aurora_v18')) || 0;
         document.getElementById('life').innerText = format(life);
 
         function format(b) {
@@ -163,39 +205,55 @@
         function log(msg) {
             const t = document.getElementById('term');
             const d = document.createElement('div');
-            d.innerHTML = `<span style="color:#bf953f;">[${new Date().toLocaleTimeString()}]</span> ${msg}`;
+            d.innerHTML = `<span style="color:var(--gold-accent); font-weight:bold;">[${new Date().toLocaleTimeString()}]</span> ${msg}`;
             t.appendChild(d); t.scrollTop = t.scrollHeight;
         }
 
         async function start() {
             const v = document.getElementById('val').value;
             const u = document.getElementById('unit').value;
-            if(!v) return alert("পরিমাণ দিন!");
+            if(!v) return alert(" !");
             const target = u === 'GB' ? v * 1024 * 1024 * 1024 : v * 1024 * 1024;
             let cur = 0; const sTime = Date.now();
-            const url = "https://speed.cloudflare.com/__down?bytes=50000000";
+            // Using a reliable, large file source designed for speed testing
+            const url = "https://proof.ovh.net/files/100Mb.dat";
 
-            log(`ইঞ্জিন সক্রিয় হচ্ছে... লক্ষ্য: ${v}${u}`);
+            log(`  ... : ${v}${u}`);
 
             async function pull() {
                 while(cur < target) {
                     try {
-                        const res = await fetch(url + "&t=" + Math.random(), { cache: 'no-store' });
-                        const b = await res.arrayBuffer();
-                        cur += b.byteLength; life += b.byteLength;
-                        document.getElementById('prog').style.width = (cur/target*100).toFixed(1) + "%";
-                        document.getElementById('life').innerText = format(life);
-                        localStorage.setItem('talha_app_v17', life);
-                        document.getElementById('speed').innerText = (cur / (1024*1024) / ((Date.now()-sTime)/1000)).toFixed(1) + " MB/s";
-                        if(Math.random() > 0.95) log(`প্যাকেট রিসিভড: ${format(b.byteLength)}`);
-                    } catch(e) { }
+                        // Using 'no-store' to bypass cache and force network usage
+                        const res = await fetch(url + "?t=" + Math.random(), { cache: 'no-store' });
+                        if (!res.body) throw new Error("No body");
+                        const reader = res.body.getReader();
+
+                        while (true) {
+                            const { done, value } = await reader.read();
+                            if (done) break;
+                            cur += value.length; life += value.length;
+
+                            // Real-time UI updates
+                            document.getElementById('prog').style.width = (cur/target*100).toFixed(1) + "%";
+                            document.getElementById('life').innerText = format(life);
+                            localStorage.setItem('talha_aurora_v18', life);
+                            document.getElementById('speed').innerText = (cur / (1024*1024) / ((Date.now()-sTime)/1000)).toFixed(1) + " MB/s";
+                            
+                            if(Math.random() > 0.98) log(`  : ${format(value.length)}`);
+                            if(cur >= target) break;
+                        }
+                    } catch(e) { 
+                        log("      ..."); 
+                        await new Promise(r => setTimeout(r, 1000)); // Wait 1s before retry
+                    }
                 }
-                log("আলহামদুলিল্লাহ! টাস্ক সম্পন্ন হয়েছে ✅");
+                log("!    ");
             }
-            for(let i=0; i<15; i++) pull();
+            // Using 6 concurrent threads for optimal speed without crashing browser
+            for(let i=0; i<6; i++) pull();
         }
 
-        // Simple PWA Installer Register
+        // Basic PWA registration (requires sw.js file in root)
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js').catch(() => {});
         }
