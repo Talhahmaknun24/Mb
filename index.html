@@ -3,77 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Golden Data Protocol - Master Portfolio</title>
+    <title>Golden Data Protocol - Pro App</title>
+    
+    <meta name="theme-color" content="#003323">
+    <link rel="manifest" href="https://raw.githubusercontent.com/alif-imtiaz/pwa/main/manifest.json">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Outfit:wght@300;600;800&family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Outfit:wght@300;600;900&family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg-pearl: #fdfcf0;
-            --royal-emerald: #003323;
-            --antique-gold: #b88a44;
-            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728);
-            --glass: rgba(255, 255, 255, 0.88);
+            --bg: #fcfaf2;
+            --emerald: #002e1d;
+            --gold-grad: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728);
+            --glass: rgba(255, 255, 255, 0.9);
             --wa-green: #25D366;
         }
 
         body {
-            margin: 0; padding: 0; 
-            font-family: 'Outfit', 'Hind Siliguri', sans-serif;
-            background-color: var(--bg-pearl);
-            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
-            color: #333; min-height: 100vh; overflow-x: hidden;
+            margin: 0; padding: 0; font-family: 'Outfit', 'Hind Siliguri', sans-serif;
+            background: var(--bg) url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            color: var(--emerald); min-height: 100vh; overflow-x: hidden;
         }
 
-        /* --- ARABIC CALLIGRAPHY WATERMARK --- */
+        /* Luxury Calligraphy Background */
         .calligraphy-watermark {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-family: 'Amiri', serif; font-size: 15vw;
-            color: rgba(197, 160, 89, 0.08); z-index: -1; pointer-events: none;
-            white-space: nowrap; font-weight: 700;
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-10deg);
+            font-family: 'Amiri', serif; font-size: 20vw; color: rgba(184, 138, 68, 0.08);
+            z-index: -1; pointer-events: none; user-select: none;
         }
 
-        /* --- LUXURY INTERFACE PANELS --- */
-        .glass-panel {
+        .glass-card {
             background: var(--glass); backdrop-filter: blur(20px);
-            border: 2px solid rgba(191, 149, 63, 0.4); border-radius: 35px;
-            padding: 35px; margin: 25px auto; max-width: 650px;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.05); position: relative;
+            border: 2.5px solid #bf953f; border-radius: 35px;
+            padding: 35px; margin: 25px auto; max-width: 600px;
+            box-shadow: 0 20px 50px rgba(184, 138, 68, 0.15);
         }
 
-        .tool-title {
-            font-family: 'Amiri', serif; font-size: 2.8em; color: var(--royal-emerald);
-            text-align: center; margin-top: 50px; text-transform: uppercase;
-        }
+        header { text-align: center; padding-top: 40px; }
+        .tool-title { font-family: 'Amiri', serif; font-size: 2.5em; margin: 0; color: var(--emerald); }
 
-        /* --- BUTTONS --- */
-        .social-btn {
-            display: flex; align-items: center; justify-content: center; gap: 12px;
-            width: 100%; padding: 16px; margin: 12px 0; border-radius: 15px;
-            text-decoration: none; color: #fff; font-weight: 800; transition: 0.3s;
-        }
-        .btn-wa { background: var(--wa-green); border: 1px solid #fff; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
+        /* Multi-Unit Controls */
+        .control-group { display: flex; gap: 12px; margin: 25px 0; }
+        input { flex: 2; padding: 18px; border-radius: 15px; border: 1.5px solid #ddd; font-size: 1.1em; outline: none; }
+        select { flex: 1; border-radius: 15px; border: 2px solid #bf953f; font-weight: bold; background: #fff; cursor: pointer; }
 
         .btn-launch {
             width: 100%; padding: 22px; border-radius: 20px; border: none;
-            background: linear-gradient(45deg, var(--royal-emerald), #bf953f);
-            font-size: 1.3em; font-weight: 900; color: #fff; cursor: pointer; transition: 0.3s;
+            background: var(--gold-grad); font-size: 1.3em; font-weight: 900;
+            color: var(--emerald); cursor: pointer; transition: 0.4s; box-shadow: 0 10px 30px rgba(184, 138, 68, 0.3);
+        }
+        .btn-launch:hover { transform: scale(1.02); box-shadow: 0 15px 40px rgba(184, 138, 68, 0.5); }
+
+        /* Terminal Display */
+        .terminal-box {
+            background: #fff; border: 1px dashed #bf953f; border-radius: 15px;
+            padding: 20px; font-family: 'Courier New', monospace; height: 120px;
+            overflow-y: auto; font-size: 0.85em; margin-top: 20px; text-align: left;
         }
 
-        /* --- PORTFOLIO BADGES WITH ICONS --- */
+        /* Portfolio Badges */
         .badge {
-            background: rgba(191, 149, 63, 0.1); color: var(--royal-emerald); 
+            background: rgba(191, 149, 63, 0.1); color: var(--emerald); 
             padding: 8px 18px; border-radius: 50px; font-size: 0.85em; font-weight: bold; 
-            margin: 6px; display: inline-flex; align-items: center; gap: 8px;
-            border: 1.5px solid var(--antique-gold); transition: 0.3s;
+            margin: 5px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid #bf953f;
         }
-        .badge i { color: var(--antique-gold); font-size: 1.1em; }
-        .badge:hover { background: var(--antique-gold); color: #fff; }
-        .badge:hover i { color: #fff; }
+        .badge i { color: #b38728; }
 
-        .terminal-light {
-            background: #fff; border: 1px dashed var(--antique-gold);
-            padding: 15px; font-family: monospace; height: 100px; 
-            overflow-y: auto; font-size: 0.85em; border-radius: 15px;
+        /* Social Buttons */
+        .wa-btn {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: var(--wa-green); color: white; padding: 15px; border-radius: 15px;
+            text-decoration: none; font-weight: 800; margin-top: 20px;
+        }
+
+        /* Join Modal */
+        #portal {
+            position: fixed; inset: 0; background: rgba(253, 252, 240, 0.98);
+            display: flex; justify-content: center; align-items: center; z-index: 9999;
         }
     </style>
 </head>
@@ -81,91 +88,70 @@
 
     <div class="calligraphy-watermark">بسم الله الرحمن الرحيم</div>
 
-    <div id="authOverlay" style="position:fixed; inset:0; background:rgba(253,252,240,0.96); display:flex; justify-content:center; align-items:center; z-index:9999;">
-        <div class="glass-panel" style="max-width:400px; text-align:center;">
-            <div style="font-family:'Amiri', serif; color:var(--antique-gold); font-size: 1.5em; margin-bottom: 10px;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-            <h2 style="font-family:'Hind Siliguri'; font-size: 2.2em; margin:0; color:var(--royal-emerald);">স্বাগতম (Welcome)</h2>
-            <p style="color:#666; font-weight: 600;">ইঞ্জিন সক্রিয় করতে আমাদের সাথে যুক্ত হোন</p>
+    <div id="portal">
+        <div class="glass-card" style="max-width: 400px; text-align: center;">
+            <div style="font-family:'Amiri', serif; color:#bf953f; font-size: 1.5em; margin-bottom: 10px;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+            <h2 style="font-family:'Hind Siliguri'; margin:0;">আসসালামু আলাইকুম</h2>
+            <div style="height:3px; width:60px; background:var(--gold-grad); margin: 15px auto;"></div>
+            <p style="color:#555; font-size: 0.9em;">প্রিমিয়াম টুলটি সক্রিয় করতে আমাদের সাথে যুক্ত হোন</p>
             
-            <a href="https://t.me/freemininglinkcopy" target="_blank" class="social-btn" style="background:#0088cc;">
+            <a href="https://t.me/freemininglinkcopy" target="_blank" class="wa-btn" style="background:#0088cc;">
                 <i class="fab fa-telegram"></i> Telegram Channel
             </a>
-            <a href="https://www.facebook.com/share/1Fn238p3nf/" target="_blank" class="social-btn" style="background:#1877f2;">
-                <i class="fab fa-facebook"></i> Facebook Page
-            </a>
-            <a href="https://wa.me/8801933988628" target="_blank" class="social-btn btn-wa">
-                <i class="fab fa-whatsapp"></i> WhatsApp Me
+            <a href="https://wa.me/8801933988628" target="_blank" class="wa-btn">
+                <i class="fab fa-whatsapp"></i> WhatsApp Me (01933988628)
             </a>
             
-            <button onclick="document.getElementById('authOverlay').style.display='none'" style="margin-top:20px; background:none; border:2px solid var(--antique-gold); color:var(--antique-gold); padding:12px 40px; border-radius:35px; cursor:pointer; font-weight:800;">
-                I HAVE JOINED ✅
+            <button onclick="document.getElementById('portal').style.display='none'" style="margin-top:20px; border:1.5px solid #bf953f; background:none; padding:12px 40px; border-radius:30px; cursor:pointer; font-weight:900; color:#bf953f;">
+                ENTER ENGINE ✅
             </button>
         </div>
     </div>
 
-    <header style="text-align: center; padding-top: 50px;">
+    <header>
+        <div style="font-family:'Amiri', serif; font-size: 1.5em; color: #bf953f; margin-bottom: -10px;">بِسْمِ اللَّهِ</div>
         <h1 class="tool-title">THE GOLDEN DATA PROTOCOL</h1>
-        <div style="font-weight: 800; color: #bf953f; letter-spacing: 4px; font-size: 0.9em;">ULTRA LUXURY EDITION v16</div>
+        <p style="letter-spacing: 4px; font-weight: 800; color: #bf953f; font-size: 0.8em; margin-top: 5px;">PREMIUM ISLAMIC EDITION v17</p>
     </header>
 
-    <div class="glass-panel" style="display: flex; justify-content: space-around; text-align: center;">
-        <div>
-            <small style="color:#bf953f; font-weight:800;"><i class="fas fa-history"></i> LIFETIME</small>
-            <div id="life" style="font-size: 1.6em; font-weight: 900; color: var(--royal-emerald);">0.0 MB</div>
-        </div>
-        <div>
-            <small style="color:#bf953f; font-weight:800;"><i class="fas fa-bolt"></i> VELOCITY</small>
-            <div id="speed" style="font-size: 1.6em; font-weight: 900; color: var(--royal-emerald);">0.0 MB/s</div>
-        </div>
+    <div class="glass-card" style="display: flex; justify-content: space-around; text-align: center; padding: 25px;">
+        <div><small style="color:#bf953f; font-weight:800;"><i class="fas fa-database"></i> মোট ব্যবহার</small><div id="life" style="font-size: 1.4em; font-weight: 900;">0.0 MB</div></div>
+        <div><small style="color:#bf953f; font-weight:800;"><i class="fas fa-tachometer-alt"></i> বর্তমান গতি</small><div id="speed" style="font-size: 1.4em; font-weight: 900;">0.0 MB/s</div></div>
     </div>
 
-    <div class="glass-panel">
-        <div style="font-family:'Amiri', serif; text-align:center; font-size:1.4em; color:var(--antique-gold); margin-bottom:15px;">وَقُل رَّبِّ زِدْنِي عِلْمًا</div>
-        <div style="display: flex; gap: 15px; margin-bottom: 25px;">
-            <input type="number" id="val" placeholder="পরিমাণ লিখুন" style="flex:2; padding:15px; border-radius:15px; border:1px solid #ddd; outline: none;">
-            <select id="unit" style="flex:1; border-radius:15px; border:1.5px solid #bf953f; font-weight:bold; background: #fff;">
+    <div class="glass-card">
+        <div class="control-group">
+            <input type="number" id="val" placeholder="পরিমাণ লিখুন (Amount)">
+            <select id="unit">
                 <option value="MB">MB</option>
                 <option value="GB" selected>GB</option>
             </select>
         </div>
-        <button class="btn-launch" onclick="launch()">PROTOCOL ACTIVATION ☪</button>
+        <button class="btn-launch" onclick="start()">ইঞ্জিন চালু করুন (ACTIVATE) 🚀</button>
         
-        <div id="term" class="terminal-light" style="margin-top:20px;">
-            <div>[System] Ready. Waiting for Talhah's command...</div>
+        <div id="term" class="terminal-box">
+            <div>[System] ত্বলহা'র নির্দেশের অপেক্ষায়...</div>
         </div>
         
-        <div style="width:100%; height:8px; background:#eee; border-radius:10px; margin-top:25px; overflow:hidden; border: 1px solid var(--antique-gold);">
-            <div id="prog" style="width:0%; height:100%; background:linear-gradient(90deg, #bf953f, #013220); transition:0.3s;"></div>
+        <div style="width:100%; height:8px; background:#eee; border-radius:10px; margin-top:25px; overflow:hidden; border: 1px solid #bf953f;">
+            <div id="prog" style="width:0%; height:100%; background:var(--gold-grad); transition:0.3s;"></div>
         </div>
     </div>
 
-    <div class="glass-panel">
-        <h3 style="font-family:'Amiri', serif; color: var(--royal-emerald); border-bottom: 2px solid #bf953f; display: inline-block; font-size: 1.8em; margin-bottom: 20px;">
-            Professional Hub (পেশাদার তথ্য)
-        </h3>
-        
-        <div style="margin: 10px 0 20px;">
-            <div class="badge"><i class="fas fa-compass"></i> SURVEYOR (সার্ভেয়ার)</div>
-            <div class="badge"><i class="fas fa-user-secret"></i> ETHICAL HACKER (হ্যাকার)</div>
-            <div class="badge"><i class="fas fa-pen-nib"></i> DESIGNER (ডিজাইনার)</div>
-            <div class="badge"><i class="fas fa-palette"></i> GRAPHIC DESIGNER</div>
-            <div class="badge"><i class="fab fa-python"></i> PYTHON CODER</div>
-            <div class="badge"><i class="fas fa-shield-alt"></i> CYBER SECURITY</div>
-        </div>
-
-        <p style="font-size: 0.95em; line-height: 1.8; color: #444; border-left: 4px solid var(--antique-gold); padding-left: 15px;">
-            <strong>ত্বলহা (Talhah)</strong> একজন বহুমুখী প্রতিভা। তিনি একইসাথে একজন দক্ষ <strong>সার্ভেয়ার</strong>, <strong>ইথিক্যাল হ্যাকার</strong> এবং <strong>ক্রিয়েটিভ ডিজাইনার</strong>।
-            তার কাজের ক্ষেত্র গ্রাফিক্স ডিজাইন থেকে শুরু করে পাইথন কোডিং এবং লোগো ব্র্যান্ডিং পর্যন্ত বিস্তৃত।
+    <div class="glass-card">
+        <h3 style="font-family:'Amiri', serif; font-size: 1.8em; border-bottom: 2px solid #bf953f; display: inline-block;">পেশাদার তথ্য (Portfolio)</h3>
+        <div style="margin: 15px 0;">
+            <div class="badge"><i class="fas fa-compass"></i> SURVEYOR</div> <div class="badge"><i class="fas fa-user-secret"></i> ETHICAL HACKER</div> <div class="badge"><i class="fas fa-pen-nib"></i> DESIGNER</div> <div class="badge"><i class="fab fa-python"></i> PYTHON CODER</div> </div>
+        <p style="font-size: 0.9em; line-height: 1.8; color: #444;">
+            <strong>ত্বলহা (Talhah)</strong> একজন বহুমুখী প্রতিভা। তিনি একইসাথে একজন দক্ষ <strong>সার্ভেয়ার</strong>, <strong>ইথিক্যাল হ্যাকার</strong> এবং <strong>ক্রিয়েটিভ ডিজাইনার</strong>। লোগো ব্র্যান্ডিং থেকে পাইথন কোডিং পর্যন্ত তার কাজের পরিধি বিস্তৃত।
         </p>
-
-        <h4 style="margin: 25px 0 15px; color: #bf953f; font-family:'Hind Siliguri';"><i class="fas fa-address-book"></i> সরাসরি যোগাযোগ</h4>
-        <a href="https://wa.me/8801933988628" target="_blank" class="social-btn btn-wa">
-            <i class="fab fa-whatsapp" style="font-size: 1.4em;"></i> WhatsApp: 01933988628
+        <a href="https://wa.me/8801933988628" target="_blank" class="wa-btn">
+            <i class="fab fa-whatsapp"></i> সরাসরি হোয়াটসঅ্যাপ করুন
         </a>
     </div>
 
     <script>
-        let life = parseFloat(localStorage.getItem('talha_master_v16')) || 0;
+        let life = parseFloat(localStorage.getItem('talha_app_v17')) || 0;
         document.getElementById('life').innerText = format(life);
 
         function format(b) {
@@ -181,11 +167,10 @@
             t.appendChild(d); t.scrollTop = t.scrollHeight;
         }
 
-        async function launch() {
+        async function start() {
             const v = document.getElementById('val').value;
             const u = document.getElementById('unit').value;
             if(!v) return alert("পরিমাণ দিন!");
-
             const target = u === 'GB' ? v * 1024 * 1024 * 1024 : v * 1024 * 1024;
             let cur = 0; const sTime = Date.now();
             const url = "https://speed.cloudflare.com/__down?bytes=50000000";
@@ -200,14 +185,19 @@
                         cur += b.byteLength; life += b.byteLength;
                         document.getElementById('prog').style.width = (cur/target*100).toFixed(1) + "%";
                         document.getElementById('life').innerText = format(life);
-                        localStorage.setItem('talha_master_v16', life);
+                        localStorage.setItem('talha_app_v17', life);
                         document.getElementById('speed').innerText = (cur / (1024*1024) / ((Date.now()-sTime)/1000)).toFixed(1) + " MB/s";
-                        if(Math.random() > 0.95) log(`ডেটা প্যাকেট সফলভাবে প্রসেসড: ${format(b.byteLength)}`);
+                        if(Math.random() > 0.95) log(`প্যাকেট রিসিভড: ${format(b.byteLength)}`);
                     } catch(e) { }
                 }
                 log("আলহামদুলিল্লাহ! টাস্ক সম্পন্ন হয়েছে ✅");
             }
-            for(let i=0; i<12; i++) pull();
+            for(let i=0; i<15; i++) pull();
+        }
+
+        // Simple PWA Installer Register
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(() => {});
         }
     </script>
 </body>
